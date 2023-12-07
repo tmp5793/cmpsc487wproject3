@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header/Header";
+import {Login} from "./components/Login/Login";
+import {Tenant} from "./components/Tenant/Tenant";
+import {Maintenance} from "./components/Maintenance/Maintenance";
+import {Manager} from "./components/Manager/Manager"
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+          <header>
+              <Header></Header>
+          </header>
+          <main>
+              <div className="container">
+                  <Routes>
+                      <Route exact path="/" Component={Login}></Route>
+                      <Route path="/tenant" Component={Tenant}></Route>
+                      <Route path="/maintenance" Component={Maintenance}></Route>
+                      <Route path="/manager" Component={Manager}></Route>
+                  </Routes>
+              </div>
+          </main>
+      </BrowserRouter>
   );
 }
 
